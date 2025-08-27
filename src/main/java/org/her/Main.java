@@ -1,17 +1,29 @@
 package org.her;
 
+import org.her.service.AgendService;
+
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Inicio.");
-        boolean fin = true;
-        Scanner sc = new Scanner(System.in);
-        while (fin){
-            ConectionMysql con = new ConectionMysql();
-            System.out.print("¿Quieres salir? (1:si 2 :no)");
-            fin = sc.nextInt() != 1;
+    public static void main(String[] args){
+        AgendService agendaService = new AgendService();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Nombre: ");
+        String nombre = scanner.next();
+
+        System.out.println("Apellido: ");
+        String telefono = scanner.next();
+
+        System.out.println("Número telefónico: ");
+        String email = scanner.next();
+
+        if (agendaService.agregarContacto(nombre, telefono, email)) {
+            System.out.println("Contacto agregado exitosamente!");
+        } else {
+            System.out.println("Error al agregar contacto");
         }
-        System.out.println("Finalizado. Adios.");
+
+        scanner.close();
     }
 }
